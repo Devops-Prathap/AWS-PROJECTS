@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+
+  pre_build:
+    commands:
+      - echo "Logging in to Docker Hub..."
+      - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - docker build -t cicd-project .
+
+      - echo "Tagging Docker image..."
+      - docker tag cicd-project YOUR_DOCKERHUB_USERNAME/cicd-project:latest
+
+  post_build:
+    commands:
+      - echo "Pushing Docker image to Docker Hub..."
+      - docker push YOUR_DOCKERHUB_USERNAME/cicd-project:latest
+
+artifacts:
+  files:
+    - appspec.yml
+    - scripts/**/*
