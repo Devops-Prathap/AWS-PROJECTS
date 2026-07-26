@@ -1,5 +1,5 @@
 version: 0.2
-envi:
+env:
   parameter-store:
     DOCKER_REGISTRY_USERNAME: /myapp/docker-registry/username
     DOCKER_REGISTRY_PASSWORD: /myapp/docker-registry/password
