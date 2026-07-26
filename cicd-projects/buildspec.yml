@@ -1,11 +1,16 @@
 version: 0.2
+envi:
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /myapp/docker-registry/username
+    DOCKER_REGISTRY_PASSWORD: /myapp/docker-registry/password
+    DOCKER_REGISTRY_URL: /myapp/docker-registry/url
 
 phases:
 
   pre_build:
     commands:
       - echo "Logging in to Docker Hub..."
-      - echo $/Myapp/DOCKER_PASSWORD | docker login -u $/Myapp/DOCKER_USERNAME --password-stdin
+      - echo $DOCKER_REGISTRY_PASSWORD: | docker login -u $/myapp/docker-registry/username --password-stdin
 
   build:
     commands:
